@@ -5,6 +5,7 @@ use crate::mesh::ids::*;
 use crate::mesh::traversal::Walker;
 use crate::mesh::connectivity_info::ConnectivityInfo;
 
+use alloc::boxed::Box;
 /// An iterator over the vertices. See [here](../struct.Mesh.html#method.vertex_iter) for more information.
 pub type VertexIter = Box<dyn Iterator<Item=VertexID>>;
 

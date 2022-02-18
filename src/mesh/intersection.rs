@@ -2,6 +2,7 @@
 
 use crate::prelude::*;
 use crate::mesh::intersection::utility::*;
+use num_traits::abs;
 
 ///
 /// An enum describing the types of primitives.
@@ -169,7 +170,7 @@ impl Mesh
     {
         let p = self.vertex_position(self.walker_from_face(face_id).vertex_id().unwrap());
         let n = self.face_normal(face_id);
-        if n.dot(point - p).abs() > MARGIN { return None; }
+        if abs(n.dot(point - p)) > MARGIN { return None; }
 
         self.face_point_intersection_when_point_in_plane(face_id, point)
     }
@@ -370,6 +371,7 @@ mod tests {
 
 mod utility {
     use crate::prelude::*;
+    use num_traits::{abs, signum};
 
     pub const MARGIN: f64 = 0.0000001;
     pub const SQR_MARGIN: f64 = MARGIN * MARGIN;
@@ -391,16 +393,16 @@ mod utility {
         let d0 = n.dot(ap0);
         let d1 = n.dot(ap1);
 
-        if d0.abs() < MARGIN && d1.abs() < MARGIN { // p0 and p1 lies in the plane
+        if abs(d0) < MARGIN && abs(d1) < MARGIN { // p0 and p1 lies in the plane
             Some(PlaneLinepieceIntersectionResult::LineInPlane)
         }
-        else if d0.abs() < MARGIN { // p0 lies in the plane
+        else if abs(d0) < MARGIN { // p0 lies in the plane
             Some(PlaneLinepieceIntersectionResult::P0InPlane)
         }
-        else if d1.abs() < MARGIN { // p1 lies in the plane
+        else if abs(d1) < MARGIN { // p1 lies in the plane
             Some(PlaneLinepieceIntersectionResult::P1InPlane)
         }
-        else if d0.signum() != d1.signum() // The edge intersects the plane
+        else if signum(d0) != signum(d1) // The edge intersects the plane
         {
             // Find intersection point:
             let p01 = *p1 - *p0;
@@ -416,7 +418,7 @@ mod utility {
     pub fn plane_ray_intersection(ray_start_point: &Vec3, ray_direction: &Vec3, plane_point: &Vec3, plane_normal: &Vec3) -> Option<f64>
     {
         let denom = plane_normal.dot( *ray_direction);
-        if denom.abs() >= MARGIN {
+        if abs(denom) >= MARGIN {
             let parameter = plane_normal.dot(plane_point - ray_start_point) / denom;
             if parameter >= 0.0 { Some(parameter) }
             else {None}

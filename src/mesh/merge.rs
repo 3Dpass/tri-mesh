@@ -3,7 +3,10 @@
 use crate::mesh::*;
 use crate::mesh::math::*;
 use crate::mesh::ids::*;
-use std::collections::{HashSet, HashMap};
+
+extern crate alloc;
+use alloc::collections::{BTreeSet as HashSet, BTreeMap as HashMap};
+
 
 /// # Merge
 impl Mesh

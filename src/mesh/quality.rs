@@ -3,7 +3,9 @@
 use crate::mesh::Mesh;
 use crate::mesh::math::*;
 use crate::mesh::ids::*;
-use std::collections::{HashSet, HashMap};
+
+use alloc::collections::{BTreeSet as HashSet, BTreeMap as HashMap};
+use alloc::vec::Vec;
 
 /// # Quality
 impl Mesh

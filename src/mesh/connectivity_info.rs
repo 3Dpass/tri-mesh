@@ -1,6 +1,11 @@
-use std::cell::{RefCell};
+use core::cell::{RefCell};
+
 use crate::mesh::ids::*;
 use crate::mesh::math::Vec3;
+
+use alloc::vec::Vec;
+use alloc::collections::BTreeSet as HashSet;
+use alloc::boxed::Box;
 
 #[derive(Clone, Debug)]
 pub(crate) struct ConnectivityInfo {
@@ -189,8 +194,8 @@ impl ConnectivityInfo {
     }
 }
 
-impl std::fmt::Display for ConnectivityInfo {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl core::fmt::Display for ConnectivityInfo {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         writeln!(f, "**** VERTICES: ****")?;
         let vertices = RefCell::borrow(&self.vertices);
         writeln!(f, "Count: {}", vertices.len())?;
@@ -238,8 +243,6 @@ pub(crate) struct IDMap<K, V>
     values: Vec<V>,
     free: Vec<K>
 }
-
-use std::collections::HashSet;
 
 impl<K: 'static, V> IDMap<K, V>
     where K: ID

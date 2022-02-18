@@ -1,8 +1,8 @@
 //! Defines unique id's for a vertex, half-edge and face.
 
-use std::fmt;
-use std::hash::Hash;
-use std::fmt::Debug;
+use core::fmt;
+use core::fmt::Debug;
+use core::hash::Hash;
 
 pub trait Deref {
     /// Returns the inner value

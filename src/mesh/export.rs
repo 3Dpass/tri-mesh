@@ -1,5 +1,8 @@
 //! See [Mesh](crate::mesh::Mesh).
 
+extern crate alloc;
+use alloc::vec::Vec;
+
 use crate::mesh::Mesh;
 use crate::mesh::ids::*;
 

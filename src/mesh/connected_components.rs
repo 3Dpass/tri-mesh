@@ -1,7 +1,8 @@
 //! See [Mesh](crate::mesh::Mesh).
 
 use crate::prelude::*;
-use std::collections::HashSet;
+use alloc::vec::Vec;
+pub (crate) use alloc::collections::BTreeSet as HashSet;
 
 /// # Connected components
 impl Mesh

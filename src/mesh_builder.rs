@@ -2,6 +2,11 @@
 //! Module containing [MeshBuilder](crate::mesh_builder::MeshBuilder) which has functionality to build a new [Mesh](crate::mesh::Mesh) instance.
 //!
 
+extern crate alloc;
+use alloc::vec::Vec;
+use alloc::string::String;
+use cgmath::num_traits::real::Real;
+
 use crate::mesh::Mesh;
 
 /// MeshBuilder errors.
@@ -334,7 +339,7 @@ impl MeshBuilder {
         for i in 0..x_subdivisions + 1 {
             let x = i as f64 / x_subdivisions as f64;
             for j in 0..angle_subdivisions {
-                let angle = 2.0 * std::f64::consts::PI * j as f64 / angle_subdivisions as f64;
+                let angle = 2.0 * core::f64::consts::PI * j as f64 / angle_subdivisions as f64;
 
                 positions.push(x);
                 positions.push(angle.cos());

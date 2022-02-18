@@ -24,9 +24,15 @@
 //!
 
 #![warn(missing_docs)]
+#![no_std]
+#![feature(btree_drain_filter)]
+
 
 pub mod mesh;
 pub mod mesh_builder;
 pub mod prelude;
 
 pub use crate::mesh_builder::MeshBuilder as MeshBuilder;
+
+#[macro_use]
+extern crate alloc;

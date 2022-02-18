@@ -42,11 +42,15 @@ pub mod validity;
 
 mod connectivity_info;
 
+extern crate alloc;
+use alloc::vec::Vec;
+use alloc::string::String;
+
 use crate::mesh::connectivity_info::ConnectivityInfo;
 use crate::mesh::ids::*;
 use crate::mesh::math::*;
 
-use std::collections::HashMap;
+use alloc::collections::BTreeMap as HashMap;
 
 /// Mesh errors.
 #[derive(Debug)]
@@ -234,8 +238,8 @@ impl Clone for Mesh {
     }
 }
 
-impl std::fmt::Display for Mesh {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl core::fmt::Display for Mesh {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         writeln!(f, "**** Connectivity: ****")?;
         writeln!(f, "{}", self.connectivity_info)?;
         Ok(())

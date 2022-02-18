@@ -1,5 +1,8 @@
 //! See [Mesh](crate::mesh::Mesh).
 
+extern crate alloc;
+use alloc::collections::BTreeMap as HashMap;
+
 use crate::mesh::Mesh;
 use crate::mesh::ids::*;
 
@@ -17,7 +20,7 @@ impl Mesh {
     /// Fix the orientation of all faces in the mesh such that the orientation of each pair of neighbouring faces is aligned.
     pub fn fix_orientation(&mut self)
     {
-        let mut visited_faces = std::collections::HashMap::new();
+        let mut visited_faces = HashMap::new();
         for face_id in self.face_iter() {
             self.find_faces_to_flip_orientation(face_id, &mut visited_faces, false);
         }
@@ -55,7 +58,7 @@ impl Mesh {
         }
     }
 
-    fn find_faces_to_flip_orientation(&self, face_id: FaceID, visited_faces: &mut std::collections::HashMap<FaceID, bool>, should_flip: bool)
+    fn find_faces_to_flip_orientation(&self, face_id: FaceID, visited_faces: &mut HashMap<FaceID, bool>, should_flip: bool)
     {
         if !visited_faces.contains_key(&face_id)
         {
