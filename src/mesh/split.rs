@@ -173,8 +173,7 @@ fn split_at_intersections(mesh1: &mut Mesh, mesh2: &mut Mesh, intersections: &Ha
     // Split edges
     let mut edge_splits1 = HashMap::new();
     let mut edge_splits2 = HashMap::new();
-    for ((id1, id2), point) in new_intersections.drain_filter(|_a,_b| true)
-    {
+    for ((id1, id2), point) in new_intersections.into_iter() {
         let v0 = match id1 {
             Primitive::Vertex(vertex_id) => { vertex_id },
             Primitive::Edge(edge) => {

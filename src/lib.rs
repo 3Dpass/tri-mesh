@@ -25,8 +25,6 @@
 
 #![warn(missing_docs)]
 #![no_std]
-#![feature(btree_drain_filter)]
-
 
 pub mod mesh;
 pub mod mesh_builder;
